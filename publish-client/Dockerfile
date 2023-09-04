@@ -2,6 +2,4 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-RUN yarn install
-
-CMD ["yarn", "dev", "--host"]
+CMD ["/bin/ash", "-c" ,"yarn install;yarn dev --host"]

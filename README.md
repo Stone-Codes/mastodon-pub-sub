@@ -39,3 +39,9 @@ The rabbitmq user setup allows to create a user for each subscriber and let that
  5. Set up rabbitmq users to restrict access => After the integration of all the core parts of the application, subscriber based authentication to receive the messages can be handled
  6. Set up API that should be posted to mastodon => Not part of the core application, so this features goes second last, to have an easy way to post a status to mastodon via the publisher service and fully utilize the mastodon integration
  7. Set up the react app to easily utilize the API => Last feature to develop, as the API could also be consumed in another way
+
+# General shortcuts
+    - No proper error handling / logging
+    - No proper request validation when sending a status to the express api
+    - No proper validation of the form on the publish-client
+    - No proper linting / formatting setup

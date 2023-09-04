@@ -1,7 +1,7 @@
 import express from "express";
 import { Mastodon } from "./Mastodon.js";
 
-import multer, { Multer, MulterError } from "multer";
+import multer, { Multer } from "multer";
 
 class ExpressServer {
   private app: express.Express;
@@ -26,7 +26,6 @@ class ExpressServer {
   // No proper error handling for validation and if something goes wrong while posting status
   private registerRoutes() {
     this.app.post("/", this.upload.single("media"), async (req, res) => {
-      console.log(req.body, req.file);
       try {
         await this.mastodon.postStatus(req.body.status, req.file);
       } catch (e) {
