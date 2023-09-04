@@ -41,7 +41,10 @@ The rabbitmq user setup allows to create a user for each subscriber and let that
  7. Set up the react app to easily utilize the API => Last feature to develop, as the API could also be consumed in another way
 
 # General shortcuts
-    - No proper error handling / logging
-    - No proper request validation when sending a status to the express api
-    - No proper validation of the form on the publish-client
-    - No proper linting / formatting setup
+
+ - No proper error handling / logging
+ - No proper request validation when sending a status to the express api
+ - No proper validation of the form on the publish-client
+ - No proper linting / formatting setup
+ - No proper setup for any production deploy
+
