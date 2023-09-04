@@ -20,9 +20,9 @@ The publish-client is responsible for
  1. Setup a account on [Mastodon](https://mastodon.social)
  2. Setup development application in Mastodon with read/write access 
  3. Copy the access token of the app and add it to `MASTODON_ACCESS_TOKEN` in `docker-compose.yml`
- 4. Start the compose file
+ 4. Start the docker compose stack
  5. Execute `make rabbit-users` to setup the required rabbitmq users
- 6. Restart the compose file
+ 6. Restart the docker compose stack
  7. Done
 
 # Idea behind the rabbitmq setup
