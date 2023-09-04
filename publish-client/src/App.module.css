@@ -1,0 +1,13 @@
+.container {
+  padding:20px
+}
+
+.formRow {
+  margin-bottom: 16px
+}
+
+.formError {
+  display:block;
+  font-size: 12px;
+  color:red;
+}

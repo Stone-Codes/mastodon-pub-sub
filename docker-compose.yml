@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  publisher:
+    container_name: publisher
+    build:
+      context: ./publisher
+    volumes: 
+      - ./publisher/:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - MASTODON_URL=https://mastodon.social
+      - MASTODON_STREAMING_URL=wss://streaming.mastodon.social
+      - MASTODON_ACCESS_TOKEN=Kj8xjBeuxJsa5L42AS7pl3vQ1YWQiacATZq2JjJQZOU
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_USER=publisher
+      - RABBITMQ_PASSWORD=publisher
+      - RABBITMQ_EXCHANGE_NAME=mastodon
+  publish-client:
+    container_name: publish-client
+    build:
+      context: ./publish-client
+    volumes:
+      - ./publish-client/:/app
+    ports:
+      - 5173:5173
+    # environment:
+      # - VITE_API_URL=http://localhost:3000
+  subscriber:
+    container_name: subscriber-1
+    build:
+      context: ./subscriber
+    volumes:
+      - ./subscriber/:/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_USER=sub1
+      - RABBITMQ_PASSWORD=sub1
+      - RABBITMQ_EXCHANGE_NAME=mastodon
+      - RABBITMQ_QUEUE_NAME=sub1-queue
+  subscriber2:
+    container_name: subscriber-2
+    build:
+      context: ./subscriber
+    volumes:
+      - ./subscriber/:/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_USER=sub2
+      - RABBITMQ_PASSWORD=sub2
+      - RABBITMQ_EXCHANGE_NAME=mastodon
+      - RABBITMQ_QUEUE_NAME=sub2-queue
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.12
+    ports:
+      - 5672:5672
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 30s
+      retries: 2
+
+volumes:
+  rabbit-data:
