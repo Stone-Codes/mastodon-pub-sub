@@ -1,5 +1,5 @@
 import express from "express";
-import { Mastodon } from "./Mastodon.js";
+import Mastodon from "./Mastodon.ts";
 
 import multer, { Multer } from "multer";
 

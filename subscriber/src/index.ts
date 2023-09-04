@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { RabbitMQ } from "./RabbitMQ";
+import  RabbitMQ  from "./RabbitMQ.ts";
 
 const rabbitmq = new RabbitMQ();
 

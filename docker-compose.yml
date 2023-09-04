@@ -28,8 +28,8 @@ services:
       - ./publish-client/:/app
     ports:
       - 5173:5173
-    # environment:
-      # - VITE_API_URL=http://localhost:3000
+    environment:
+      - VITE_API_URL=http://localhost:3000
   subscriber:
     container_name: subscriber-1
     build:

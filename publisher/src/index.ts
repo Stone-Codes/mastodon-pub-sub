@@ -1,9 +1,9 @@
 import "dotenv/config";
 
-import { RabbitMQ } from "./RabbitMQ.js";
-import { Mastodon } from "./Mastodon.js";
+import RabbitMQ from "./RabbitMQ.ts";
+import Mastodon from "./Mastodon.ts";
 import { mastodon } from "masto";
-import ExpressServer from "./ExpressServer.js";
+import ExpressServer from "./ExpressServer.ts";
 
 const main = async () => {
   // Setup rabbitmq connection and queue

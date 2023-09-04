@@ -1,5 +1,6 @@
 import amqplib from "amqplib";
-export class RabbitMQ {
+
+class RabbitMQ {
   private channel?: amqplib.Channel;
   constructor() {}
 
@@ -44,3 +45,5 @@ export class RabbitMQ {
     });
   }
 }
+
+export default RabbitMQ

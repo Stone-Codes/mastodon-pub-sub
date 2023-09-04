@@ -1,6 +1,6 @@
 import { createRestAPIClient, createStreamingAPIClient, mastodon } from "masto";
 
-export class Mastodon {
+class Mastodon {
   private mastodonClient: mastodon.rest.Client;
   private mastodonStreamingClient: mastodon.streaming.Client;
 
@@ -58,3 +58,5 @@ export class Mastodon {
     }
   }
 }
+
+export default Mastodon;
